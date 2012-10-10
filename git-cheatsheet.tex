@@ -1,0 +1,212 @@
+\documentclass[a4paper,fontsize=7pt]{scrreprt}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{enumerate}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage{vmargin}
+
+\usepackage[table]{xcolor}
+
+\setmarginsrb{1.4cm}{1.0cm}% left, top
+		      {1.4cm}{1.0cm}% right, down
+                	      {7mm}{0.5cm}% head: height, distance
+	               {7mm}{0.5cm}% foot: height, distance
+
+% Set column space
+\setlength{\columnsep}{0.25em}
+
+% Define colours
+\definecolorset{hsb}{}{}{red,0,.4,0.95;orange,.1,.4,0.95;green,.25,.4,0.95;yellow,.15,.4,0.95}
+\definecolorset{hsb}{}{}{blue,.55,.4,0.95;purple,.7,.4,0.95;pink,.8,.4,0.95;blue2,.58,.4,0.95}
+\definecolorset{hsb}{}{}{magenta,.9,.4,0.95;green2,.29,.4,0.95}
+
+% Redefine sections
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+	{-1.7ex}{0.7ex}{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}
+	{-1.7ex}{0.5ex}{\normalfont\normalsize\bfseries}}
+\makeatother
+
+% No section numbers
+\setcounter{secnumdepth}{0}
+
+% No indentation
+\setlength{\parindent}{0em}
+
+% No header and footer
+\pagestyle{empty}
+
+% set own shortcuts
+\newcommand{\cmdline}[1] {
+	\begin{tabularx}{\hsize}{X}
+			{#1}
+	\end{tabularx}
+}
+
+\newcommand{\colouredbox}[2] {
+	\colorbox{#1!40}{
+		\begin{minipage}{0.95\linewidth}
+			{
+			\rowcolors[]{1}{#1!20}{#1!10}
+			#2
+			}
+		\end{minipage}
+	}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{landscape}
+
+\begin{multicols}{3}
+[\begin{center}\section{ Git Cheat Sheet}\end{center}]
+
+%% Create git Repositories
+\colouredbox{magenta}{
+	\begin{center}\section{Create}\end{center}
+	\subsection{From existing data}
+		\cmdline{cd $\tilde{}$/my\_project\_dir}\\
+		\cmdline{\$ git init}\\
+		\cmdline{\$ git add .}
+	\subsection{From existing repo}
+		\cmdline{\$ git clone $\tilde{}$/existing/repo $\tilde{}$/new/repo}\\
+		\cmdline{\$ git clone you@host.de:dir/project.git}\\
+		\cmdline{\$ git clone http://[USER@]host.de/project.git}
+}
+
+%% Browse through files/repository
+\colouredbox{purple}{
+	\begin{center}\section{Browse}\end{center}
+	\subsection{Files changed in working directory}
+		\cmdline{\$ git status}
+	\subsection{Changes of tracked files}
+		\cmdline{\$ git diff}
+	\subsection{Changes between ID1 and ID2}
+		\cmdline{\$ git diff $<$ID1$>$ $<$ID2$>$}
+	\subsection{History of changes}
+		\cmdline{\$ git log}
+}
+
+%% Git tips to handle things
+\colouredbox{gray}{
+	\begin{center}\section{Useful tips}\end{center}
+	\subsection{Documentation/help}
+		\cmdline{\$ git help [command]}
+		\cmdline{\$ man git-[command]}
+	\subsection{Push branch to remote}
+		\cmdline{\$ git push $<$origin$>$ $<$branch$>$}
+	\subsection{Delete branch (locally and remote)}
+		\cmdline{\$ git branch -d $<$branch$>$}
+		\cmdline{\$ git push $<$origin$>$ :$<$branch$>$}
+}
+
+%% how to update repository
+\colouredbox{pink}{
+	\begin{center}\section{Update}\end{center}
+	\subsection{Fetch latest changes from origin}
+		\cmdline{\$ git fetch}
+	\subsection{see what changed}
+		\cmdline{\$ git remote update}
+}
+
+%% Revert changes
+\colouredbox{green}{
+	\begin{center}\section{Revert}\end{center}
+	\subsection{Revert the last commit}
+		\cmdline{\$ git revert HEAD}
+	\subsection{Return to last committed state}
+		\cmdline{\$ git checkout -f | git reset --hard}
+	\subsection{Revert specific commit}
+		\cmdline{\$ git revert $<$ID$>$}
+	\subsection{fix/change last commit}
+		\cmdline{\$ git commit $--$amend}		
+}
+
+%% How to handle branches
+\colouredbox{orange}{
+	\begin{center}\section{branch}\end{center}
+	\subsection{List all branches (locally and remote)}
+		\cmdline{\$ git branch -a}
+	\subsection{Switch to BRANCH}
+		\cmdline{\$ git checkout BRANCH}
+	\subsection{Merge Branch B1 into B2}
+		\cmdline{\$ git checkout $<$B2$>$}\\
+		\cmdline{\$ git merge $<$B1$>$}
+	\subsection{Create Branch based on HEAD}
+		\cmdline{\$ git branch $<$BRANCH$>$}
+	\subsection{Create Branch based on HEAD and checkout}
+		\cmdline{\$ git checkout -b $<$BRANCH$>$} 
+	\subsection{Create Branch based on another}
+		\cmdline{\$ git branch $<$new$>$ $<$branch$>$}
+	\subsection{Delete a branch}
+		\cmdline{\$ git branch -d $<$BRANCH$>$}
+}
+
+%% Commit your changes
+\colouredbox{red}{
+	\begin{center}\section{Commit}\end{center}
+	\subsection{Commit all local changes}
+		\cmdline{\$ git commit -a}
+}
+
+%% Resolve merge conflicts
+\colouredbox{gray}{
+	\begin{center}\section{Resolve merge conflicts}\end{center}
+	\subsection{View merge conflicts}
+		\cmdline{\$ git diff}
+	\subsection{View merge conflicts against base file}
+		\cmdline{\$ git diff --base $<$FILE$>$}
+	\subsection{View merge conflicts against other changes}
+		\cmdline{\$ git diff $--$theirs $<$FILE$>$}
+	\subsection{View merge conflicts against your changes}
+		\cmdline{\$ git diff $--$ours $<$FILE$>$}
+	\subsection{After resolving conflicts, merge with}
+		\cmdline{\$ git add $<$CONFLICTING\_FILE$>$}\\
+		\cmdline{\$ git rebase $--$continue}
+}
+
+%% Publish your changes
+\colouredbox{blue}{
+	\begin{center}\section{Publish}\end{center}
+	\subsection{Push changes to origin}
+		\cmdline{\$ git push [origin] [branch]}
+	\subsection{Make a Version}
+		\cmdline{\$ git tag $<$version\_name$>$}
+	\subsection{Prepare a patch}
+		\cmdline{\$ git format-patch origin}
+}
+
+%% configure your settings for git
+\colouredbox{yellow}{
+	\begin{center}\section{Configuration}\end{center}
+	\cmdline{\$ git config [$--$global] [option]}\\
+	\hspace*{39mm}\textbf{global is stored in $\tilde{}$/.gitconfig}\\
+	\subsection{user}
+		\cmdline{user.name NAME}
+		\cmdline{user.email EMAIL}
+	\subsection{color}
+		\cmdline{color.ui auto}
+	\subsection{optimisation}
+		\cmdline{packs.threads 0}
+		\cmdline{diff.renamelimit 0}
+}
+
+\end{multicols}
+\begin{center}
+\footnotesize
+\rule{0.7\linewidth}{0.25pt}
+\par Date: \today\\
+Author: Max Oberberger (max@oberbergers.de)\\
+Based on Alex Zeitlers Cheat Sheet
+\end{center}
+\end{landscape}
+\end{document}
