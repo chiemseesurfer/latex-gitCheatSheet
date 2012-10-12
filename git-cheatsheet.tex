@@ -37,6 +37,9 @@
 % No section numbers
 \setcounter{secnumdepth}{0}
 
+% set Version
+\newcommand{\Version}[0]{1.3}
+
 % No indentation
 \setlength{\parindent}{0em}
 
@@ -74,11 +77,11 @@
 \colouredbox{magenta}{
 	\begin{center}\section{Create}\end{center}
 	\subsection{From existing data}
-		\cmdline{cd $\tilde{}$/my\_project\_dir}\\
+		\cmdline{cd \ $\tilde{}$/my\_project\_dir}\\
 		\cmdline{\$ git init}\\
 		\cmdline{\$ git add .}
 	\subsection{From existing repo}
-		\cmdline{\$ git clone $\tilde{}$/existing/repo $\tilde{}$/new/repo}\\
+		\cmdline{\$ git clone \ $\tilde{}$/existing/repo \ $\tilde{}$/new/repo}\\
 		\cmdline{\$ git clone you@host.de:dir/project.git}\\
 		\cmdline{\$ git clone http://[USER@]host.de/project.git}
 }
@@ -96,6 +99,15 @@
 		\cmdline{\$ git log}
 }
 
+%% Commit your changes
+\colouredbox{red}{
+	\begin{center}\section{Commit}\end{center}
+	\subsection{Commit all local changes}
+		\cmdline{\$ git commit -a}
+	\subsection{Commit all local changes and add message}
+		\cmdline{\$ git commit -am \glqq $<$message$>$\grqq}
+}
+
 %% Git tips to handle things
 \colouredbox{gray}{
 	\begin{center}\section{Useful tips}\end{center}
@@ -107,15 +119,8 @@
 	\subsection{Delete branch (locally and remote)}
 		\cmdline{\$ git branch -d $<$branch$>$}
 		\cmdline{\$ git push $<$origin$>$ :$<$branch$>$}
-	\subsection{Change not pushed commits}
+	\subsection{Change not pushed commits untill ID}
 		\cmdline{\$ git rebase -i $<$ID$>$}
-}
-
-%% Commit your changes
-\colouredbox{red}{
-	\begin{center}\section{Commit}\end{center}
-	\subsection{Commit all local changes}
-		\cmdline{\$ git commit -a}
 }
 
 %% Revert changes
@@ -142,15 +147,17 @@
 		\cmdline{\$ git checkout $<$B2$>$}\\
 		\cmdline{\$ git merge $<$B1$>$}\\
 		\cmdline{\$ git merge --no-ff -m \glqq Message\grqq}\\
-		\cmdline{\$ git merge --squash}
+		\hspace*{30mm}\textbf{generates commit even as --ff option}\\
+		\cmdline{\$ git merge --squash}\\
+		\hspace*{30mm}\textbf{merge without generated commit}
 	\subsection{Create Branch based on HEAD}
-		\cmdline{\$ git branch $<$BRANCH$>$}
+		\cmdline{\$ git branch $<$branch$>$}
 	\subsection{Create Branch based on HEAD and checkout}
-		\cmdline{\$ git checkout -b $<$BRANCH$>$} 
+		\cmdline{\$ git checkout -b $<$branch$>$} 
 	\subsection{Create Branch based on another}
 		\cmdline{\$ git branch $<$new$>$ $<$branch$>$}
 	\subsection{Delete a branch}
-		\cmdline{\$ git branch -d $<$BRANCH$>$}
+		\cmdline{\$ git branch -d $<$branch$>$}
 }
 
 %% how to update repository
@@ -193,7 +200,7 @@
 \colouredbox{yellow}{
 	\begin{center}\section{Configuration}\end{center}
 	\cmdline{\$ git config [$--$global] [option]}\\
-	\hspace*{39mm}\textbf{global is stored in $\tilde{}$/.gitconfig}\\
+	\hspace*{39mm}\textbf{global is stored in \ $\tilde{}$/.gitconfig}\\
 	\subsection{user}
 		\cmdline{user.name NAME}
 		\cmdline{user.email EMAIL}
@@ -208,7 +215,7 @@
 \begin{center}
 \footnotesize
 \rule{0.7\linewidth}{0.25pt}
-\par Date: \today\\
+\par Date: \today \ - Version \Version\\
 Author: Max Oberberger (max@oberbergers.de)\\
 https://github.com/chiemseesurfer/latex-gitCheatSheet
 \end{center}
