@@ -1,0 +1,65 @@
+\documentclass[a4paper,fontsize=7.5pt]{scrreprt}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{enumerate}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage{vmargin}
+\usepackage{graphicx}
+
+\usepackage[table]{xcolor}
+
+\setmarginsrb{1.1cm}{1.0cm}% left, top
+		      {1.1cm}{1.0cm}% right, down
+                	      {7mm}{0.5cm}% head: height, distance
+	               {7mm}{0.5cm}% foot: height, distance
+
+% Set column space
+\setlength{\columnsep}{0.25em}
+
+% Redefine sections
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+	{-1.7ex}{0.7ex}{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}
+	{-1.7ex}{0.5ex}{\normalfont\normalsize\bfseries}}
+\makeatother
+
+% No section numbers
+\setcounter{secnumdepth}{0}
+
+% set Version
+\newcommand{\Version}[0]{1.1}
+
+% No indentation
+\setlength{\parindent}{0em}
+
+% No header and footer
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{landscape}
+
+\begin{center}
+\section{Git Cheat Sheet Volume 2}
+\includegraphics[scale=0.72]{pics/Git-ebenen}
+
+\footnotesize
+\rule{0.7\linewidth}{0.25pt}
+\par Date: \today \ - Version \Version\\
+Author: Max Oberberger (max@oberbergers.de)\\
+https://github.com/chiemseesurfer/latex-gitCheatSheet
+\end{center}
+
+%\end{multicols}
+
+\end{landscape}
+\end{document}

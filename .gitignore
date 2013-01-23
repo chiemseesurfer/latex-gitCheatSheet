@@ -1,3 +1,4 @@
 *.aux
+*eps-converted-to.pdf
 *.synctex.gz
 *.log
