@@ -5,10 +5,10 @@ $(GCHSHV): $(GCHSHV).pdf
 $(GCHSH): $(GCHSH).pdf
 
 $(GCHSHV).pdf: $(GCHSHV).tex
-	pdflatex $(GCHSHV).tex
+	pdflatex --shell-escape $(GCHSHV).tex
 
 $(GCHSH).pdf: $(GCHSH).tex
-	pdflatex $(GCHSH).tex
+	pdflatex --shell-escape $(GCHSH).tex
 
 clean:
 	-rm $(GCHSHV).ps
